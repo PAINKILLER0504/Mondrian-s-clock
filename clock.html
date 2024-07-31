@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <style>
+        .clock{
+    float: left;
+    position: sticky;
+    top: 300px;
+    margin-bottom: 100px;
+    padding-left: 30px;
+
+    width: 270px;
+    height: 400px;
+    /* background-color: #cc11bb;
+    border: 5px solid #000; */
+}
+
+/* 时钟背景 */
+.clock .blue{
+    position: relative;
+    top: 137px;
+    float: left;
+    width: 25px;
+    height: 160px;
+    background-color: #0000ff;
+    border: 8px solid #000;
+    border-right: none;
+}
+.clock .blue::after{
+    content: '';
+    position: absolute;
+    right: -8px;
+    width: 8px;
+    height: 220px;
+    background-color: #000;
+    border-right: none;
+}
+
+.clock .wight{
+    position: relative;
+    top: 100px;
+    float: left;
+    width: 75px;
+    height: 30px;
+    background-color: #fff;
+    border: 8px solid #000;
+}
+.clock .wight::after{
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -8px;
+    width: 8px;
+    height: 200px;
+    background-color: #000;
+    border-right: none;
+}
+
+.clock .red{
+    position: relative;
+    top: 100px;
+    float: left;
+    width: 80px;
+    height: 30px;
+    background-color: #ff0000;
+    border: 8px solid #000;
+    border-left: none;
+}
+
+.clock .yellow{
+    position: relative;
+    top: 100px;
+    float: left;
+    width: 75px;
+    height: 160px;
+    background-color: #ffff00;
+    border: 8px solid #000;
+    border-top: none;
+}
+
+/* 时钟指针 */
+.clock .time::before{
+
+    content: '';
+
+    position: absolute;
+    top: 39%;
+    left: 35.5%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    box-shadow: 0 0 3px #000;
+}
+
+.clock .time::after{
+
+    content: '';
+
+    position: absolute;
+    top: 159px;
+    left: 36.5%;
+    z-index: 10;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ff0000;
+}
+
+.clock .time .hour,
+.clock .time .minunt,
+.clock .time .second{
+    position: absolute;
+    
+
+}
+
+.clock .time .hour{
+    top: 128px;
+    left: 77px;
+    width: 70px;
+    height: 70px;
+
+}
+.clock .time .hour .hr{
+    width: 70px;
+    height: 70px;
+
+}
+
+.clock .time .minunt{
+    top: 103px;
+    left: 52px;
+    width: 120px;
+    height: 120px;
+
+}
+
+.clock .time .minunt .min{
+    width: 120px;
+    height: 120px;
+
+}
+.clock .time .second{
+    top: 93px;
+    left: 42px;
+    width: 140px;
+    height: 140px;
+
+}
+
+.clock .time .second .sec{
+    
+    width: 140px;
+    height: 140px;
+
+}
+
+.clock .time .hour .hr,
+.clock .time .minunt .min,
+.clock .time .second .sec{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.clock .time .hour .hr::before{
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 35px;
+    background-color: #000;
+    box-shadow: -3px 1px 2px #66666666;
+    z-index: 5;
+    border-radius: 10px;
+
+
+}
+
+.clock .time .minunt .min::before{
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 60px;
+    background-color: #000;    
+    box-shadow: -3px 1px 2px #66666666;
+    z-index: 5;
+    border-radius: 10px;
+}
+
+.clock .time .second .sec::before{
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 90px;
+    background-color: #ff0000;
+    box-shadow: -3px 1px 2px #66666666;
+    z-index: 30;
+    border-radius: 10px;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="blue"></div>
+        <div class="wight"></div>
+        <div class="red"></div>
+        <div class="yellow"></div>
+
+        <div class="time">
+            <div class="hour">
+                <span class="hr" id="hr"></span>
+            </div>
+            <div class="minunt">
+                <span class="min" id="min"></span>
+            </div>
+            <div class="second">
+                <span class="sec" id="sec"></span>
+            </div>
+        </div>
+
+    </div>
+    
+<script>
+    const degree = 6;
+const hr = document.querySelector('#hr');
+const min = document.querySelector('#min');
+const sec = document.querySelector('#sec');
+
+setInterval(() => {
+
+    const date = new Date();
+    const hh = date.getHours() * 30;
+    const mm = date.getMinutes() * degree;
+    const ss = date.getSeconds() * degree;
+
+    hr.style.transform = `rotateZ(${hh + (mm / 12)}deg)`;
+    min.style.transform = `rotateZ(${mm}deg)`;
+    sec.style.transform = `rotateZ(${ss}deg)`;
+
+});
+</script>
+</body>
+
+</html>
